@@ -1,0 +1,37 @@
+
+name: CI Workflow for CloudFoundry
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # instructions on CF cli installation
+    # https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
+    - name: Install CF cli
+      run: |
+        wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+        echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+        sudo apt-get update
+        sudo apt-get install cf-cli
+  
+  # How to create a service account for automated deployments
+  # https://cloud.gov/docs/services/cloud-gov-service-account/
+    - name: Deploy the App to Cloud.gov
+      run: |
+        cf api  https://api.fr.cloud.gov
+        cf auth ${{secrets.CF_SERVICE_ACCOUNT_ID}} ${{secrets.CF_SERVICE_ACCOUNT_PASSWORD}}
+        cf target -o "epa-prototyping"
+        cf push
+
+    - name: Test API using Newman
+      run: |
+        newman run Collections/CF-Sample-App.postman_collection.json

@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "56e5d411-4c6b-48a7-b3e7-5201a131dcfd",
+		"name": "CF-Sample-App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_Ids",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52d1eb7e-b5bf-423c-a102-46a170cf1e7b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_ADDRESS}}/ids",
+					"host": [
+						"{{URL_ADDRESS}}"
+					],
+					"path": [
+						"ids"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5234122b-456a-43e8-9266-2634d89e4f4d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "aafe399a-34e5-42d1-bab6-cd2395ca4d87",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 600ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(600);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c890bcd5-2d4c-42fc-a5c6-51bd80f471b0",
+			"key": "URL_ADDRESS",
+			"value": "https://test-python-flask-interested-cheetah-wg.app.cloud.gov"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
