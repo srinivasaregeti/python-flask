@@ -47,5 +47,4 @@ jobs:
       uses: Xotabu4/selenoid-github-action@v1
     # - run: npm ci
     - name: Run Tests
-      run: echo "Hello Selenium"
-
+      run: npm testcase-01.js
