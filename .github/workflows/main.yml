@@ -45,6 +45,5 @@ jobs:
 
     - name: Selenium Test Cases
       uses: ajinx/selenoid@v2
-      
-      - name: Test Case-01 Sample
-        run: echo "Selenium Test Running"
+    - name: Test Case-01 Sample
+      run: echo "Selenium Test Running"
