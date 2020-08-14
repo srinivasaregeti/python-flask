@@ -8,7 +8,7 @@ on:
     branches: [ master ]
 
 jobs:
-  pre-reqs:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -21,11 +21,6 @@ jobs:
         echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
         sudo apt-get update
         sudo apt-get install cf-cli
-  deploy:
-    needs: pre-reqs
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
   
   # How to create a service account for automated deployments
   # https://cloud.gov/docs/services/cloud-gov-service-account/
@@ -36,7 +31,10 @@ jobs:
         cf auth ${{secrets.CF_SERVICE_ACCOUNT_ID}} ${{secrets.CF_SERVICE_ACCOUNT_PASSWORD}}
         cf target -o "epa-prototyping"
         cf push
-
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
     - name: Test API using Newman
       run: |
         newman run Collections/CF-Sample-App.postman_collection.json
