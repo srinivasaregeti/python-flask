@@ -37,12 +37,22 @@ jobs:
       run: |
         newman run Collections/CF-Sample-App.postman_collection.json
 
+  Codescan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+  Selenium:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
     - name: Start Selenoid Server
       uses: Xotabu4/selenoid-github-action@v1
     # - run: npm ci
