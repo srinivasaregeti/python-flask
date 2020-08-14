@@ -31,7 +31,9 @@ jobs:
         cf auth ${{secrets.CF_SERVICE_ACCOUNT_ID}} ${{secrets.CF_SERVICE_ACCOUNT_PASSWORD}}
         cf target -o "epa-prototyping"
         cf push
+
   newman:
+    needs: [deploy]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
