@@ -8,9 +8,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  pre-reqs:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
 
@@ -22,6 +21,11 @@ jobs:
         echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
         sudo apt-get update
         sudo apt-get install cf-cli
+  deploy:
+    needs: pre-reqs
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
   
   # How to create a service account for automated deployments
   # https://cloud.gov/docs/services/cloud-gov-service-account/
