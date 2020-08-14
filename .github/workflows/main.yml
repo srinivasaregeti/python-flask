@@ -42,3 +42,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    - name: Selenium Test Cases
+      uses: ajinx/selenoid@v2
+      - run: npm ci
+      - name: Test Case-01 Sample
+        run: echo "Selenium Test Running"
