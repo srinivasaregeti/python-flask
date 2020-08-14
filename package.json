@@ -1,0 +1,4 @@
+// package.json
+"scripts": {
+   "test": "mocha --recursive --timeout 10000 testcase-01.js"
+}
