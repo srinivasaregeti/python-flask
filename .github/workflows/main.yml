@@ -12,7 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
+    
+    - name: Create Issue Action
+      uses: nashmaniac/create-issue-action@v1.1
+      with:
+        title: "Approve Deployment - Sample Issue"
+        token: ${{secrets.GITHUB_TOKEN}}
+        labels: "None" 
+        assignees: ${{github.actor}} 
+        body: "Approve the issue to proceed" 
+    
     # instructions on CF cli installation
     # https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
     - name: Install CF cli
