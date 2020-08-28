@@ -1,7 +1,7 @@
 name: Approval Workflow Test
 on: 
   issues:
-    types:[opened, closed]
+    types: [opened, closed]
 
 jobs:
   PerformingDeployment:
