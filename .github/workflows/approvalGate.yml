@@ -1,0 +1,13 @@
+name: Approval Workflow Test
+on: 
+  issues:
+    types:[opened, closed]
+
+jobs:
+  PerformingDeployment:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run deployment command
+    run: echo "Performing deployment"
