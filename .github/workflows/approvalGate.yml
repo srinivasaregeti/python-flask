@@ -6,6 +6,7 @@ on:
 jobs:
   PerformingDeployment:
     runs-on: ubuntu-latest
+    if: startsWith(github.event.issue.title, 'DEPLOY project')
     steps:
     - uses: actions/checkout@v2
 

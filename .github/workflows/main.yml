@@ -16,10 +16,10 @@ jobs:
     - name: Create Issue Action
       uses: nashmaniac/create-issue-action@v1.1
       with:
-        title: "Approve Deployment - Sample Issue"
+        title: "Deploy Project - Sample Issue"
         token: ${{secrets.GITHUB_TOKEN}}
         labels: "None" 
-        assignees: ${{github.actor}} 
+        assignees: "srinivasaregeti" 
         body: "Approve the issue to proceed" 
     
     # instructions on CF cli installation
