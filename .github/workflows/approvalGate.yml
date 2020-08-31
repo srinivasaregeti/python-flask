@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    if: needs.comment.outputs.output1 == 'TRU1'
 
     - name: Output from the Approval comment job
       run: echo ${{needs.comment.outputs.output1}}
