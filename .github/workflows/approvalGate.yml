@@ -8,7 +8,7 @@ jobs:
       - uses: rytswd/comvent@v0.1.0
         id: approvalid
         with:
-          keyword: Approved # This is the regex string to match against
+          keyword: Trigger # This is the regex string to match against
       - name: Run this even if comment did not match
         run: |
           echo Running this even without comment match
