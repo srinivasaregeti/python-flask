@@ -15,4 +15,4 @@ jobs:
       - name: Run when comment contains matching string
         run: |
           echo Comment has the matching string
-        if: steps.comvent.outputs.comvent != ''
+        if: steps.approvalid.outputs.comvent != ''
