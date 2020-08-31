@@ -15,6 +15,7 @@ jobs:
         run: |
           echo Running this even without comment match
           exit 1
+        if: steps.approvalid.outputs.comvent == ''
       - name: Run when comment contains matching string
         id: approvalStatus
         run: |
