@@ -4,17 +4,27 @@ on: issue_comment
 jobs:
   comment:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{steps.approvalStatus.outputs.approval}}
     steps:
       - uses: rytswd/comvent@v0.1.0
         id: approvalid
         with:
           keyword: Approved # This is the regex string to match against
       - name: Run this even if comment did not match
-        id: approvalStatus1
         run: |
           echo Running this even without comment match
       - name: Run when comment contains matching string
-        id: approvalStatus2
+        id: approvalStatus
         run: |
           echo Comment has the matching string
+          echo "::set-output name=approval::TRUE"
         if: steps.approvalid.outputs.comvent != ''
+  
+  Deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Output from the Approval comment job
+      run: echo ${{needs.comment.outputs.output1}}
