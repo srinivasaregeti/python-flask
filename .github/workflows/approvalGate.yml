@@ -11,12 +11,7 @@ jobs:
         id: approvalid
         with:
           keyword: Approved # This is the regex string to match against
-      - name: Run this even if comment did not match
-        run: |
-          echo Running this even without comment match
-          exit 1
-        if: steps.approvalid.outputs.comvent == ''
-      - name: Run when comment contains matching string
+       - name: Run when comment contains matching string
         id: approvalStatus
         run: |
           echo Comment has the matching string
