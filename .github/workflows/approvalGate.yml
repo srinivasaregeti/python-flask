@@ -11,7 +11,8 @@ jobs:
         id: approvalid
         with:
           keyword: Approved # This is the regex string to match against
-       - name: Run when comment contains matching string
+      
+      - name: Run when comment contains matching string
         id: approvalStatus
         run: |
           echo Comment has the matching string
