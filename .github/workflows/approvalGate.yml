@@ -22,6 +22,7 @@ jobs:
         if: steps.approvalid.outputs.comvent != ''
   
   Deployment:
+    needs: [comment]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
