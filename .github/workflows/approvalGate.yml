@@ -23,7 +23,7 @@ jobs:
           echo "::set-output name=approval::TRUE"
         if: steps.approvalid.outputs.comvent != ''
   
-  Deployment:
+  deploy:
     needs: [comment]
     runs-on: ubuntu-latest
     steps:
