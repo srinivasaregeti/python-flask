@@ -1,4 +1,4 @@
-name: Comvent - Run if comment matches the keyword
+name: Run this workflow based on the approval comment in the issue
 on: issue_comment
 
 jobs:
@@ -6,13 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rytswd/comvent@v0.1.0
-        id: comvent
+        id: approvalid
         with:
-          keyword: Trigger # This is the regex string to match against
-      - name: Some random step
+          keyword: Approved # This is the regex string to match against
+      - name: Run this even if comment did not match
         run: |
-          echo This step simply runs, as there is no condition check
-      - name: Run when comvent matches
+          echo Running this even without comment match
+      - name: Run when comment contains matching string
         run: |
-          echo You see this step run only when comvent found the matching keyword in the comment event
+          echo Comment has the matching string
         if: steps.comvent.outputs.comvent != ''
