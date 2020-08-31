@@ -26,9 +26,10 @@ jobs:
   deploy:
     needs: [comment]
     runs-on: ubuntu-latest
+    if: needs.comment.outputs.output1 == 'TRU1'
+
     steps:
     - uses: actions/checkout@v2
-      if: needs.comment.outputs.output1 == 'TRU1'
 
     - name: Output from the Approval comment job
       run: echo ${{needs.comment.outputs.output1}}
