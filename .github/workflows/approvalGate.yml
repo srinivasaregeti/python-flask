@@ -63,6 +63,7 @@ jobs:
         newman run Collections/CF-Sample-App.postman_collection.json
 
   Codescan:
+    needs: [comment]
     runs-on: ubuntu-latest
 
     steps:
@@ -74,6 +75,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   Selenium:
+    needs: [deploy]
     runs-on: ubuntu-latest
 
     steps:
