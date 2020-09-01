@@ -1,7 +1,7 @@
 import os
 from flask import Flask, json
 
-ids = [{"id": 1, "name": "Company One"}, {"id": 2, "name": "Company Two"}]
+ids = [{"id": 1, "name": "Company One"}, {"id": 3, "name": "Company Two"}]
 
 api = Flask(__name__)
 
